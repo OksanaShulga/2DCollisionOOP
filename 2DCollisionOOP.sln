@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DCollisionOOP", "2DCollisionOOP\2DCollisionOOP.csproj", "{E1861E0C-C49C-4FA9-A142-D9FC86D52D40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1861E0C-C49C-4FA9-A142-D9FC86D52D40}.Debug|x86.ActiveCfg = Debug|x86
+		{E1861E0C-C49C-4FA9-A142-D9FC86D52D40}.Debug|x86.Build.0 = Debug|x86
+		{E1861E0C-C49C-4FA9-A142-D9FC86D52D40}.Release|x86.ActiveCfg = Release|x86
+		{E1861E0C-C49C-4FA9-A142-D9FC86D52D40}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B569DDD6-DC88-4502-A1E7-35B5DB0A1F29}
+	EndGlobalSection
+EndGlobal

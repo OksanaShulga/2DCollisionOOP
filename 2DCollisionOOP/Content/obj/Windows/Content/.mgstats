@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/../../../2DCollision/2DCollision/Content/File.spritefont","C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/MyFont.xnb","FontDescriptionProcessor","SpriteFontContent",2424,21521,0.3340655
+"C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/block.png","C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/block.xnb","TextureProcessor","Texture2DContent",3656,5561,0.1910379
+"C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/man.png","C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/man.xnb","TextureProcessor","Texture2DContent",5073,5405,0.0090054
