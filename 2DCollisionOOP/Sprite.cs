@@ -8,31 +8,29 @@ using System.Threading.Tasks;
 
 namespace _2DCollisionOOP
 {
-    public class Sprite:ICloneable
+    public class Sprite
     {
         public Texture2D texture;
         public Vector2 position;
         public float speed = 0f;
+        public bool isRemoved;
         
+
+        public Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
 
         public Sprite(Texture2D texture)
         {
             this.texture = texture;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
             
         }
 
-        public virtual void Draw (SpriteBatch spriteBatch)
+        public virtual void Draw (SpriteBatch spriteBatch, List<Sprite> sprites)
         {
             spriteBatch.Draw(texture, position, Color.White);
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
         }
     }
 }

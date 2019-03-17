@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace _2DCollisionOOP
 {
@@ -12,17 +14,26 @@ namespace _2DCollisionOOP
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public SpriteFont font;
+
+        public static Random random;
+
+        private List<Sprite> sprites;
+
         Texture2D personTexture;
-        Person person;
         Texture2D blockTexture;
-        Block block;
-        Scene scene;
+
+        Person person;
+
+        int totalBlocks;
+        
+
 
         public Game1()
         {
             instance = this;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            random = new Random();
         }
 
       
@@ -37,21 +48,18 @@ namespace _2DCollisionOOP
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("MyFont");
-
             personTexture = Content.Load<Texture2D>("man");
+            blockTexture = Content.Load<Texture2D>("block");
+
             person = new Person(personTexture)
             {
-                speed = 5f                
+                speed = 5f
             };
 
-            blockTexture = Content.Load<Texture2D>("block");
-            block = new Block(blockTexture)
+            sprites = new List<Sprite>
             {
-                speed = 2f                
+                person
             };
-
-            scene = new Scene(person,block);
-            
         }
 
       
@@ -63,23 +71,66 @@ namespace _2DCollisionOOP
         
         protected override void Update(GameTime gameTime)
         {
-            
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            scene.Update(gameTime);
-            
+            foreach (var sprite in sprites)
+                sprite.Update(gameTime, sprites);
+
+            SpawnBlock();
+
+            RemoveBlock();
+
             base.Update(gameTime);
         }
 
-        
+        //remove fallen off blocks
+        private void RemoveBlock()
+        {            
+            for (var i = 0; i < sprites.Count; i++)
+            {
+                if (sprites[i].isRemoved)
+                {
+                    sprites.RemoveAt(i);
+                    i--;
+                    totalBlocks++;
+                }
+            }
+        }
+
+        // add new block in the sprite List WHEN random.NextDouble() < spawnProbability
+        private void SpawnBlock()
+        {             
+            if (random.NextDouble() < new Block(blockTexture).spawnProbability)
+            {
+                sprites.Add(new Block(blockTexture)
+                {
+                    speed = 3f
+                });
+            }
+        }
+
         protected override void Draw(GameTime gameTime)
         {
+            // Change the background to red when the person was hit by a block
+            if (person.hit)
+            {
+                graphics.GraphicsDevice.Clear(Color.Red);
+                person.hit = false;
+            }
+            else
+                graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
 
-            scene.Draw(spriteBatch);
-            
+            //Draw sprites
+            foreach (var sprite in sprites)
+                sprite.Draw(spriteBatch, sprites);
+
+            //Draw table
+            spriteBatch.DrawString(font, String.Format("DODGED BLOCKS  {0} : {1} TOTAL BLOCKS", (totalBlocks - person.hitScore).ToString(), totalBlocks.ToString()), new Vector2(0, 10), Color.Black);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

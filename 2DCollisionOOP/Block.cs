@@ -10,22 +10,22 @@ namespace _2DCollisionOOP
 {
     public class Block:Sprite
     {
+        
         public float acceleration;
-        public bool isRemoved;
+        public float spawnProbability = 0.01f;
 
         public Block(Texture2D texture):base(texture)
         {
-            
+            position = new Vector2 ((float)Game1.random.NextDouble() * (Game1.instance.GraphicsDevice.Viewport.Width - texture.Width),-texture.Height);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             position.Y += speed;
 
             //isRemoved
-            if (position.Y == Game1.instance.GraphicsDevice.Viewport.Bounds.Height)
+            if (Rectangle.Bottom >= Game1.instance.GraphicsDevice.Viewport.Bounds.Height)
                 isRemoved = true;
         }
-
     }
 }
