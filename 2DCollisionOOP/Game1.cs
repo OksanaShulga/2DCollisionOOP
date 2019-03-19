@@ -10,6 +10,7 @@ namespace _2DCollisionOOP
     public class Game1 : Game
     {
         public static Game1 instance;
+        public float timer;
         
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
@@ -68,9 +69,11 @@ namespace _2DCollisionOOP
             
         }
 
-        
+
         protected override void Update(GameTime gameTime)
         {
+            timer += (float)gameTime.ElapsedGameTime.Milliseconds;
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -80,10 +83,24 @@ namespace _2DCollisionOOP
 
             SpawnBlock();
 
+            AccelerateBlock();
+
             RemoveBlock();
 
             base.Update(gameTime);
         }
+
+        private void AccelerateBlock()
+        {
+            var step = 0.1f;
+            if (timer >= 5000)
+            {
+                Block.acceleration += step;
+
+                timer = 0;
+            }
+        }
+
 
         //remove fallen off blocks
         private void RemoveBlock()
@@ -101,12 +118,13 @@ namespace _2DCollisionOOP
 
         // add new block in the sprite List WHEN random.NextDouble() < spawnProbability
         private void SpawnBlock()
-        {             
-            if (random.NextDouble() < new Block(blockTexture).spawnProbability)
+        {
+            var multiplicator = 2;
+            if (random.NextDouble() < new Block(blockTexture).spawnProbability * Block.acceleration* multiplicator)
             {
                 sprites.Add(new Block(blockTexture)
                 {
-                    speed = 3f
+                    speed = 2f
                 });
             }
         }
@@ -130,7 +148,9 @@ namespace _2DCollisionOOP
 
             //Draw table
             spriteBatch.DrawString(font, String.Format("DODGED BLOCKS  {0} : {1} TOTAL BLOCKS", (totalBlocks - person.hitScore).ToString(), totalBlocks.ToString()), new Vector2(0, 10), Color.Black);
+            
 
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

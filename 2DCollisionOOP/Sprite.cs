@@ -14,7 +14,7 @@ namespace _2DCollisionOOP
         public Vector2 position;
         public float speed = 0f;
         public bool isRemoved;
-        
+        public float acceleration = 1f;
 
         public Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
 

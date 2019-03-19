@@ -10,8 +10,7 @@ namespace _2DCollisionOOP
 {
     public class Block:Sprite
     {
-        
-        public float acceleration;
+        public new static float acceleration=1;
         public float spawnProbability = 0.01f;
 
         public Block(Texture2D texture):base(texture)
@@ -21,7 +20,11 @@ namespace _2DCollisionOOP
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            position.Y += speed;
+            var min = 1f;
+            var max = 2.5f;
+            acceleration = MathHelper.Clamp(acceleration, min,max);
+
+            position.Y += acceleration*speed;
 
             //isRemoved
             if (Rectangle.Bottom >= Game1.instance.GraphicsDevice.Viewport.Bounds.Height)
