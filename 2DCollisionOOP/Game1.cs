@@ -10,7 +10,7 @@ namespace _2DCollisionOOP
     public class Game1 : Game
     {
         public static Game1 instance;
-        public float timer;
+        private float timer;
         
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
@@ -92,8 +92,9 @@ namespace _2DCollisionOOP
 
         private void AccelerateBlock()
         {
-            var step = 0.1f;
-            if (timer >= 5000)
+            var accelerationPeriod = 5000; //accelerate every 5000 Miliseconds
+            var step = 0.1f; //step is the amount to increase acceleration every acceleration Period
+            if (timer >= accelerationPeriod)
             {
                 Block.acceleration += step;
 
@@ -119,7 +120,7 @@ namespace _2DCollisionOOP
         // add new block in the sprite List WHEN random.NextDouble() < spawnProbability
         private void SpawnBlock()
         {
-            var multiplicator = 2;
+            var multiplicator = 2; //multiplicator helps to increase Spawn twice as faster then increase Acceleration
             if (random.NextDouble() < new Block(blockTexture).spawnProbability * Block.acceleration* multiplicator)
             {
                 sprites.Add(new Block(blockTexture)
