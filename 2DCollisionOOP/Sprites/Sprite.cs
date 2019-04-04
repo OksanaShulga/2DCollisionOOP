@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace _2DCollisionOOP
         public float speed = 0f;
         public bool isRemoved;
         public float acceleration = 1f;
+        protected KeyboardState currentKey;
+        protected KeyboardState previousKey;
 
         public Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
         
@@ -34,7 +37,8 @@ namespace _2DCollisionOOP
         public virtual void Draw (SpriteBatch spriteBatch, List<Sprite> sprites)
         {
             spriteBatch.Draw(texture, position, Color.White);
-        }       
-      
+        }  
+        
+       
     }
 }

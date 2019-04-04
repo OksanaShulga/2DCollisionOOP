@@ -13,36 +13,53 @@ namespace _2DCollisionOOP
     {
         public bool hit;
         public int hitScore;
-        public Timer timer;
-        
-  
-        public Person(Texture2D texture):base(texture)
+        public Timer timerToMakePlayerInvincible;
+        private Shield shield;
+       
+
+        public Person(Texture2D texture, Shield shield):base(texture)
         {
             position.X = (Game1.instance.GraphicsDevice.Viewport.Bounds.Width - texture.Width) / 2;
-            position.Y = Game1.instance.GraphicsDevice.Viewport.Bounds.Height - texture.Height;            
+            position.Y = Game1.instance.GraphicsDevice.Viewport.Bounds.Height - texture.Height;
+            this.shield = shield;            
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if (timer is null || !timer.isRunning)            
+            if (Keyboard.GetState().IsKeyDown(Keys.Space)&&!shield.IsActivated)
             {
-                Move();
-                
-                foreach (var sprite in sprites)
+                shield.Activate();
+                shield.position.X = this.position.X - 10;
+                shield.position.Y = this.position.Y;                
+            }
+
+            if (!shield.IsActivated)
+            { 
+                if (timerToMakePlayerInvincible is null || !timerToMakePlayerInvincible.isRunning)
                 {
-                    if (sprite is Person)
-                        continue;
+                    Move();
 
-                    if (new PerPixelCollision().CollisionDetection(this,sprite))                    
-                    {
-                        this.hit = true;
-                        timer = new Timer (3000); //timer to freeze Player for set time in miliseconds
-                        hitScore++;
-                        sprite.isRemoved = true;
-                    }
+                    CheckForCollision(sprites);
                 }
+            }
 
-                position.X = MathHelper.Clamp(position.X, 0, Game1.instance.GraphicsDevice.Viewport.Bounds.Width - texture.Width);
+            position.X = MathHelper.Clamp(position.X, 0, Game1.instance.GraphicsDevice.Viewport.Bounds.Width - texture.Width);
+        }
+
+        private void CheckForCollision(List<Sprite> sprites)
+        {
+            foreach (var sprite in sprites)
+            {
+                if (sprite is Person)
+                    continue;
+
+                if (new PerPixelCollision().CollisionDetection(this, sprite))
+                {
+                    this.hit = true;
+                    timerToMakePlayerInvincible = new Timer(3000); //timer to freeze Player for set time in miliseconds
+                    hitScore++;
+                    sprite.isRemoved = true;
+                }
             }
         }
 
@@ -57,6 +74,15 @@ namespace _2DCollisionOOP
             {
                 position.X += speed;
             }
+        }
+
+       
+        public override void Draw (SpriteBatch spriteBatch, List<Sprite> sprites)
+        {
+            spriteBatch.Draw(texture, position, Color.White);
+            
+            if(shield.IsActivated)
+                spriteBatch.Draw(shield.texture, shield.position, Color.White);
         }
     }
 }

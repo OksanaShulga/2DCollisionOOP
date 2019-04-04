@@ -6,10 +6,14 @@
   <SourceFiles>
     <File>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/../../../2DCollision/2DCollision/Content/File.spritefont</File>
     <File>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/block.png</File>
+    <File>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bomb.png</File>
     <File>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/man.png</File>
+    <File>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/shield.png</File>
   </SourceFiles>
   <DestFiles>
     <File>MyFont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
