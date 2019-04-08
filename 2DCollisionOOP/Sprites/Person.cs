@@ -12,7 +12,6 @@ namespace _2DCollisionOOP
     public class Person:Sprite
     {
         public bool hit;
-        public int hitScore;
         public Timer timerToMakePlayerInvincible;
         private Shield shield;
        
@@ -53,12 +52,23 @@ namespace _2DCollisionOOP
                 if (sprite is Person)
                     continue;
 
-                if (new PerPixelCollision().CollisionDetection(this, sprite))
+                if (sprite is Block && !(sprite is Present))
                 {
-                    this.hit = true;
-                    timerToMakePlayerInvincible = new Timer(3000); //timer to freeze Player for set time in miliseconds
-                    hitScore++;
-                    sprite.isRemoved = true;
+                    if (new PerPixelCollision().CollisionDetection(this, sprite))
+                    {
+                        this.hit = true;
+                        timerToMakePlayerInvincible = new Timer(3000); //timer to freeze Player for set time in miliseconds
+                        ScoreCounter.Negative++;
+                        sprite.isRemoved = true;
+                    }
+                }
+                if (sprite is Present)
+                {
+                    if (new PerPixelCollision().CollisionDetection(this, sprite))
+                    {
+                        ScoreCounter.Positive++;
+                        sprite.isRemoved = true;
+                    }
                 }
             }
         }

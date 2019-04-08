@@ -30,5 +30,7 @@ namespace _2DCollisionOOP
             if (Rectangle.Bottom >= Game1.instance.GraphicsDevice.Viewport.Bounds.Height)
                 isRemoved = true;
         }
+
+        
     }
 }

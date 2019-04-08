@@ -21,7 +21,10 @@ namespace _2DCollisionOOP
         protected KeyboardState previousKey;
 
         public Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
-        
+        public Sprite()
+        {
+
+        }
         public Sprite(Texture2D texture)
         {
             this.texture = texture;

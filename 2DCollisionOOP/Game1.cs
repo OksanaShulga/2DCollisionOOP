@@ -10,7 +10,7 @@ namespace _2DCollisionOOP
     public class Game1 : Game
     {
         public static Game1 instance;
-        public float timer;
+        private Scene scene;      
         
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
@@ -18,15 +18,16 @@ namespace _2DCollisionOOP
 
         public static Random random;
 
-        private List<Sprite> sprites;
-        private List<Texture2D> blockTextures;
+        public List<Sprite> sprites;
+        public static List<Texture2D> blockTextures;
 
         Texture2D personTexture;
         Texture2D shieldTexture;
+        public Texture2D presentTexture;
 
         Person person;        
 
-        int totalBlocks;        
+        //public static int totalBlocks;        
 
 
         public Game1()
@@ -35,6 +36,7 @@ namespace _2DCollisionOOP
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             random = new Random();
+            scene = new Scene();
         }
 
       
@@ -52,6 +54,7 @@ namespace _2DCollisionOOP
             personTexture = Content.Load<Texture2D>("man");
             blockTextures = new List<Texture2D>() { Content.Load<Texture2D>("block"), Content.Load<Texture2D>("bomb") };
             shieldTexture = Content.Load<Texture2D>("shield");
+            presentTexture = Content.Load<Texture2D>("present");
 
             person = new Person(personTexture, new Shield(shieldTexture))
             {
@@ -73,63 +76,16 @@ namespace _2DCollisionOOP
 
         protected override void Update(GameTime gameTime)
         {
-            timer += (float)gameTime.ElapsedGameTime.Milliseconds;
-
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                Exit();                        
 
-            foreach (var sprite in sprites)
-                sprite.Update(gameTime, sprites);
-
-            SpawnBlock();
-
-            AccelerateBlock();
-
-            RemoveBlock();
+            scene.Update(gameTime, sprites);
 
             base.Update(gameTime);
         }
 
-        private void AccelerateBlock()
-        {
-            var step = 0.1f;
-            if (timer >= 5000)
-            {
-                Block.acceleration += step;
-
-                timer = 0;
-            }
-        }
-
-
-        //remove fallen off blocks
-        private void RemoveBlock()
-        {            
-            for (var i = 0; i < sprites.Count; i++)
-            {
-                if (sprites[i].isRemoved)
-                {
-                    sprites.RemoveAt(i);
-                    i--;
-                    totalBlocks++;
-                }
-            }
-        }
-
-        // add new block in the sprite List WHEN random.NextDouble() < spawnProbability
-        private void SpawnBlock()
-        {
-            var multiplicator = 2; //multiplicator to increase spawnProbability
-            var index = random.Next(0, blockTextures.Count); //choose type of block randomly
-            if (random.NextDouble() < new Block(blockTextures[index]).spawnProbability * Block.acceleration* multiplicator)
-            {
-                sprites.Add(new Block(blockTextures[index])
-                {
-                    speed = 2f
-                });
-            }
-        }
+        
 
         protected override void Draw(GameTime gameTime)
         {
@@ -149,8 +105,8 @@ namespace _2DCollisionOOP
                 sprite.Draw(spriteBatch, sprites);
 
             //Draw table
-            spriteBatch.DrawString(font, String.Format("DODGED BLOCKS  {0} : {1} TOTAL BLOCKS", (totalBlocks - person.hitScore).ToString(), totalBlocks.ToString()), new Vector2(0, 10), Color.Black);
-                                  
+            spriteBatch.DrawString(font, String.Format("SCORE  {0}", ScoreCounter.Score.ToString()), new Vector2(0, 60), Color.Black);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

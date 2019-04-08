@@ -44,11 +44,14 @@
     <Compile Include="Collision\ICollision.cs" />
     <Compile Include="Collision\PerPixelCollision.cs" />
     <Compile Include="Collision\RectangleCollision.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="Score.cs" />
     <Compile Include="Sprites\Block.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Sprites\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\Present.cs" />
     <Compile Include="Sprites\Shield.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Timer.cs" />
