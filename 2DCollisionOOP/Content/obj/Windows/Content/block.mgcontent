@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/block.png</SourceFile>
-  <SourceTime>2019-02-24T18:35:25.8350632+02:00</SourceTime>
-  <DestFile>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/block.xnb</DestFile>
-  <DestTime>2019-03-03T17:08:34.8093013+02:00</DestTime>
+  <SourceFile>C:/projects/2DCollisionOOP/2DCollisionOOP/Content/block.png</SourceFile>
+  <SourceTime>2019-03-11T20:23:42.2662895+02:00</SourceTime>
+  <DestFile>C:/projects/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/block.xnb</DestFile>
+  <DestTime>2019-04-11T10:31:59.5838291+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T18:35:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

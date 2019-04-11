@@ -20,7 +20,7 @@ namespace _2DCollisionOOP
         protected KeyboardState currentKey;
         protected KeyboardState previousKey;
 
-        public Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
+        public virtual Rectangle Rectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
         public Sprite()
         {
 

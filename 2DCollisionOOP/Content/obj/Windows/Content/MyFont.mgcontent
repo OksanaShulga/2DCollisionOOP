@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/../../../2DCollision/2DCollision/Content/File.spritefont</SourceFile>
-  <SourceTime>2019-02-18T16:18:29.9143344+02:00</SourceTime>
-  <DestFile>C:/Users/oshul/source/repos/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/MyFont.xnb</DestFile>
-  <DestTime>2019-03-10T20:23:34.5402895+02:00</DestTime>
+  <SourceFile>C:/projects/2DCollisionOOP/2DCollisionOOP/Content/../../../2DCollision/2DCollision/Content/File.spritefont</SourceFile>
+  <SourceTime>2019-02-25T09:46:34.1845947+02:00</SourceTime>
+  <DestFile>C:/projects/2DCollisionOOP/2DCollisionOOP/Content/bin/Windows/Content/MyFont.xnb</DestFile>
+  <DestTime>2019-04-11T10:31:59.5048345+03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-12-08T18:35:54+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
