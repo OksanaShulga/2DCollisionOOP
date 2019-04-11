@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2DCollisionOOP
 {
-    class RectangleCollision : ICollision
+    public class RectangleCollision : ICollision
     {
         public bool CollisionDetection(Sprite spriteA, Sprite spriteB)
         {
